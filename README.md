@@ -2,15 +2,8 @@ To see the Final project
 Click here : https://flourishing-licorice-2bb303.netlify.app/
 
 # Fyle Frontend Challenge
- click https://github.com/Maneeka03/fyle-internship-challenge-23/blob/master/screenshot/Screenshot%202024-05-20%20155804.png
 
-  ![unit test result](https://github.com/Maneeka03/fyle-internship-challenge-23/assets/163315987/644853af-9334-402e-a3f8-79e45883a5fa)
-<p>
-
-    <a href="https://github.com/Maneeka03/fyle-internship-challenge-23/blob/master/screenshot" target="_blank">
-      <img width="100%" src="https://github.com/Maneeka03/fyle-internship-challenge-23/blob/master/screenshot/Screenshot%202024-05-20%20155804.png alt="YOLO Vision banner"></a>
-  </p>
-
+![unit test result](https://github.com/Maneeka03/fyle-internship-challenge-23/assets/163315987/644853af-9334-402e-a3f8-79e45883a5fa)
 for running the unit tests: ng test
 service test file : api.service.spec.ts
 component test file : app.component.spec.ts
