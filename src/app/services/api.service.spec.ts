@@ -8,15 +8,15 @@ describe('ApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],  // Import HttpClientTestingModule
-      providers: [ApiService]  // Provide ApiService if not already provided in the service itself
+      imports: [HttpClientTestingModule],  
+      providers: [ApiService]  
     });
     service = TestBed.inject(ApiService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
-    httpMock.verify();  // Verify that no unmatched requests are outstanding
+    httpMock.verify(); 
   });
 
   it('should be created', () => {
