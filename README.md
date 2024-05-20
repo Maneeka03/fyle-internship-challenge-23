@@ -3,7 +3,7 @@
 
 <p>
     <a href="https://github.com/ultralytics/assets/releases/tag/v8.2.0" target="_blank">
-      <img width="100%" src="https://raw.githubusercontent.com/ultralytics/assets/main/yolov8/banner-yolov8.png" alt="YOLO Vision banner"></a>
+      <img width="100%" src="https://github.com/Maneeka/fyle-internship-challenge-23/blob/master/screenshot/Screenshot%202024-05-20%20155804.png alt="YOLO Vision banner"></a>
   </p>
 
 
