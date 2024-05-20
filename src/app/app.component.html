@@ -1,5 +1,26 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="bg-gradient-to-r from-indigo-900 via-purple-900 to-black py-32">
+  <h1 class="text-8xl text-white text-center font-semibold">{{ title }}</h1>
+</div>
+<div *ngIf="!githubUsername" class="flex flex-col items-center justify-center p-10  w-full  ">
+  <div class="font-bold flex flex-col items-center text-3xl ">
+    <h1 class="text-4xl  font-bold">Get Your Github User Profile's Details here</h1>
+    <form (ngSubmit)="onSubmit()" class="flex  mt-10 mx-auto bg-white p-2 rounded-lg">
+
+      <input type="text" [ngModel]="username" id="name" placeholder="Username" class="w-[800px] bg-white outline-none border border-gray-300 rounded-l py-4 px-4 block focus:border-blue-400" [(ngModel)]="username" name="username">
+
+      <button type="submit" class="bg-purple-500 px-3 rounded-r text-white hover:bg-white hover:text-blue-500 border border-blue-500 glow">Submit</button>
+    </form>
   </div>
 </div>
+
+<app-userdetails [user]="user"></app-userdetails>
+<app-repos *ngIf="repos" [repos]="repos"></app-repos>
+<div *ngIf="user" >
+  <app-pagination  [totalPages]="user.public_repos" (pageEvent)="onPageChanged($event)">
+</app-pagination>
+</div>
+
+
+
+
+
