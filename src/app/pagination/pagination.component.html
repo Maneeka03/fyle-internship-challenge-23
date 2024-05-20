@@ -1,0 +1,16 @@
+<div id="page" class="relative bg-gray-100 " *ngIf="totalPages">
+<div>
+  <mat-paginator
+[length]="totalPages"
+[pageSize]="pageSize"
+[pageSizeOptions]="pageSizeOptions"
+(page)="handlePageEvent($event)">
+</mat-paginator>
+</div>
+</div>
+
+
+
+
+
+

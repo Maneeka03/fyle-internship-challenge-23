@@ -1,0 +1,86 @@
+<div class="container mx-auto p-5 bg-gray-100 font-sans">
+    <h2 class="text-blue-500 font-bold flex justify-center text-2xl">Welcome To GitHub Repositories Search</h2>
+    <br>
+    <br>
+  <div class="search-container flex justify-center items-center mb-5">
+    <input matInput type="text" [(ngModel)]="username" placeholder="Enter GitHub username" class="border border-gray-300 rounded p-2">
+    <button (click)="search()" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded ml-2">Search</button>
+  </div>
+
+  <div *ngIf="isLoading && !profile">
+    <ngx-skeleton-loader count="1" appearance="circle" [theme]="{ 'width': '96px', 'height': '96px' }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '70%', 'height': '24px', 'margin-top': '16px' }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 'width': '50%', 'height': '16px', 'margin-top': '8px' }"></ngx-skeleton-loader>
+  </div>
+
+  <div *ngIf="profile" class="bg-white p-5 rounded shadow-md">
+    <div class="flex">
+    <div class="ml-3 flex flex-col justify-between">
+      <div class="mb-4">
+        <img [src]="profile.avatar_url" alt="Avatar" class="w-24 h-24 rounded-full">
+        <h2 class="text-2xl font-bold">{{ profile.login }}</h2>
+        <p class=" text-xl">{{ profile.bio }}</p>
+        <a [href]="profile.html_url" target="_blank" class="text-blue-500 hover:underline">{{ profile.html_url }}</a>
+      </div>
+    </div>
+      <div>
+        <img src="assets/git.png" class="flex justify-center w-10 h-10 ml-250 mr-250" alt="Git Icon">
+      </div>
+      <div class="mt-8 flex flex-col justify-between gap-2">
+        <div>
+          <div>Followers: {{ profile.followers }}</div>
+          <div>Following: {{ profile.following }}</div>
+          <div>Repositories: {{ profile.public_repos }}</div>
+          <div class='flex flex-row items-center gap-2'>
+            <img src="assets/mail.png" class="w-6 h-6" alt="Email Icon">
+            <p>Email: {{ profile.email }}</p>
+          </div>
+          <div class='flex flex-row items-center gap-2'>
+            <img src="assets/linkedin.jpeg" class="w-6 h-6" alt="LinkedIn Icon">
+            <p>LinkedIn: {{ profile.linkedin_username }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div  *ngIf="searchClicked" class="mt-5 flex justify-end items-center">
+    <label for="pageSize" class="mr-2">Items per page:</label>
+    <select (change)="onPageSizeChange($event)" class="border border-gray-300 rounded p-2">
+      <option *ngFor="let size of pageSizes">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+  <div *ngIf="isLoading && repos.length === 0" class="mt-8">
+    <ngx-skeleton-loader count="2" appearance="line" [theme]="{ 'width': '100%', 'height': '150px', 'margin-bottom': '20px' }"></ngx-skeleton-loader>
+  </div>
+  <div *ngIf="repos.length > 0" class="mt-8">
+    <h2 class="text-blue-500 font-bold text-2xl">Repositories:</h2>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+      <li *ngFor="let repo of repos | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: repos.length }; let i = index" class="bg-white p-4 rounded shadow-md hover:bg-blue-100 transition duration-300">
+        <div class="border p-4 rounded-md">
+          <h2 class="text-xl font-bold mb-2">
+            <a [href]="repo.html_url" target="_blank" class="text-blue-500 hover:underline">{{ repo.name }}</a>
+          </h2>
+          <p class="mb-2 line-clamp-1 overflow-hidden overflow-ellipsis">{{ repo.description || 'No description available' }}</p>
+          <div class="flex flex-wrap align-middle">
+            <span class="mr-2">Topics:</span>
+            <span *ngFor="let topic of repo.topics" class="bg-red-500 text-white px-2 py-1 rounded-md mr-2 mb-2">{{ topic }}</span>
+          </div>
+          <div class="flex flex-wrap align-middle">
+            <span class="mr-2">Languages:</span>
+            <span *ngIf="repo.language" class="bg-red-500 text-white px-2 py-1 rounded-md mr-2 mb-2">{{ repo.language }}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="searchClicked" class="mt-8">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onPageDataChange($event)" class="flex justify-center mt-5 hover:bg-blue-100">
+    </pagination-controls>
+  </div>
+</div>

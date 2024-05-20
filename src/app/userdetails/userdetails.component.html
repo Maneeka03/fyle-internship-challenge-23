@@ -1,0 +1,39 @@
+<div id="user-detail" class="p-4 bg-gray-900 flex items-center justify-center text-black" *ngIf="user">
+
+  <div id="profile" class="justify-center ml-5">
+    <div id="pic">
+      <img class="flex justify-center w-60 h-60 border-2 rounded-full" [src]="user.avatar_url" width="200px" alt="Profile Picture">
+      <!-- <div id="name-overlay">
+        <h1 class="font-thin text-zinc-700 text-xl">{{user.name}}</h1>
+      </div> -->
+    </div>
+  </div>
+  <div id="details" class="ml-10">
+    <div id="bio">
+      <h1 class="font-bold text-white text-4xl">{{user.name}}</h1>
+      <h1 class="font-bold text-lg text-blue-400 mt-1">{{user.login}}</h1>
+      <p class="mt-1 font-semibold text-gray-200">{{user.bio}}</p>
+      <p class="mt-1 font-semibold text-blue-100">{{user.html_url}}</p>
+    </div>
+    <div id="location" class="mt-5 text-white flex gap-2">
+      <p class="font-semibold text-white">Location:</p>
+      <p>{{user.location || "No Information"}}</p>
+    </div>
+    <div id="company" class="mt-5 flex gap-2 text-white items-center" *ngIf="user.company">
+      <p class="font-semibold text-white">Company:</p>
+      <p class="text-white">{{user.company || "No Information"}}</p>
+    </div>
+    <div id="blog" class="mt-5 flex gap-2 items-center" *ngIf="user.blog">
+      <p class="font-semibold text-white">Blog:</p>
+      <a class="text-blue-400" [href]="user.blog">{{user.blog || "No Information"}}</a>
+    </div>
+    <div id="email" class="mt-5 flex gap-2 items-center" *ngIf="user.email">
+      <p class="font-semibold text-white">Email:</p>
+      <p class="text-white">{{user.email || "No Information"}}</p>
+    </div>
+    <div id="hireable" class="mt-5 flex gap-2 text-white items-center" *ngIf="user.hireable !== null">
+      <p class="font-semibold ">Hireable:</p>
+      <p>{{user.hireable ? 'Yes' : 'No' || "No Information"}}</p>
+    </div>
+  </div>
+</div>
